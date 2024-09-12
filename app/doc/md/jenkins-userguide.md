@@ -248,7 +248,7 @@ ssh-rsa AAAAB3NzaC1yc2E...
 
 ```
 root@springboot-svr:~# mkdir .ssh
-root@springboot-svr:~# vi .ssh/authorized_keys
+root@springboot-svr:~# nano .ssh/authorized_keys
 젠킨스서버의 공개키를 붙여 넣는다.
 ```
 
@@ -266,12 +266,12 @@ root@springboot-svr:~# vi .ssh/authorized_keys
 - Jenkins 관리
   - 시스템 설정
     - Publish over SSH
-      - Passphrase: 스프링부트서버 암호
+      - Passphrase: 스프링부트서버 암호(bitcamp!@#123)
       - 추가 버튼 클릭
       - SSH Servers
-        - Name: 임의의서버 이름
-        - Hostname: 스프링부트서버의 IP 주소
-        - Username: 사용자 아이디
+        - Name: 임의의서버 이름(ncp-ai08-springboot)
+        - Hostname: 스프링부트서버의 IP 주소(springboot ip)
+        - Username: 사용자 아이디(root)
         - `Test Configuration` 버튼 클릭
           - `Success` OK!
 
@@ -288,6 +288,7 @@ root@springboot-svr:~# vi .ssh/authorized_keys
 멧
 
 ```
+이부분 3개 다 안됬음(괜찮은듯)
 컨테이너/# service docker start
 컨테이너/# systemctl start docker  <=== 권한 문제 해결해야 실행됨
 컨테이너/# /etc/init.d/docker start  <=== 직접 실행하기
