@@ -33,7 +33,9 @@
 install-docker.sh 파일 생성
 
 ```
-# vi install-docker.sh
+# nano install-docker.sh
+# cat install-docker.sh
+(원래vi였음)
 ```
 
 install-docker.sh 파일 내용
@@ -68,7 +70,8 @@ apt-get -y install docker-ce
 도커 빌드 파일 생성
 
 ```
-# vi Dockerfile
+# nano Dockerfile
+# cat Dockerfile
 ```
 
 Dockerfile 내용
@@ -91,26 +94,28 @@ USER jenkins
 도커 이미지 생성
 
 ```
-# docker build -t suhodo/my-jenkins:1.0 .
+# docker build -t dlwngus3856/my-jenkins:1.0 .
+# docker image ls
 ```
-
 도커 이미지를 도커 허브 사이트에 업로드 하기
 
 ```
 # docker login
-# docker push suhodo/my-jenkins:1.0
+# docker push dlwngus3856/my-jenkins:1.0
 ```
 
 컨테이너 생성 및 실행하기
 
 ```
-# docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure --network="jenkins" --name my-jenkins suhodo/my-jenkins:1.0
+# docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure --network="jenkins" --name my-jenkins dlwngus3856/my-jenkins:1.0
+# docker ps
 # docker container ls
 ```
 
 젠킨스 컨테이너를 재생성 할 때, 기존 젠킨스 볼륨을 제거하기
 
 ```
+이거 안한듯?
 # docker volume ls
 # docker volume rm jenkins_home
 ```
@@ -188,10 +193,10 @@ Dashboard
   - General
     - 설명: `빌드 테스트1`
     - `GitHub project` 체크
-      - Project url: `https://github.com/NCP08/ncp-myapp.git`
+      - Project url(내꺼): `https://github.com/NCP08/ncp-myapp.git`
   - 소스 코드 관리
     - `Git` 선택
-      - Repository URL: `https://github.com/NCP08/ncp-myapp.git`
+      - Repository URL(내깃): `https://github.com/NCP08/ncp-myapp.git`
       - Credentials:
         - Add 버튼 클릭: `Add Jenkins` 선택
         - `Username with Password` 선택
@@ -207,7 +212,8 @@ Dashboard
         - `Make gradlew executable` 체크
         - Wrappter location: 비워둠
       - Tasks
-        - `clean npmSetup appNpmInstall build`
+        - `clean build`
+        - `# clean npmSetup appNpmInstall build` 이거 안해도된다함(대신 위에꺼 한거)
         - 입력
   - 저장
 - `지금 빌드` 클릭
